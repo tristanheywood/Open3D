@@ -262,10 +262,13 @@ std::vector<size_t> &VisualizerWithEditing::GetPickedPoints() {
 std::vector<size_t> VisualizerWithEditing::GetSelectedPoints() {
     auto &view_control = (ViewControlWithEditing &)(*view_control_ptr_);    
 
-    if (editing_geometry_ptr_->GetGeometryType() == geometry::Geometry::GeometryType::PointCloud) {
+    if (view_control.IsLocked() && 
+        selection_polygon_ptr_ && 
+        editing_geometry_ptr_ &&
+        editing_geometry_ptr_->GetGeometryType() == geometry::Geometry::GeometryType::PointCloud
+    ) {
 
         geometry::PointCloud &pcd = (geometry::PointCloud &)*editing_geometry_ptr_;
-
         return selection_polygon_ptr_->CropPointCloudIndex(pcd, view_control); 
     }
     return std::vector<size_t>(); 
