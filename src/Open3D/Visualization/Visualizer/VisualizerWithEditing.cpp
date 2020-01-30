@@ -259,6 +259,18 @@ std::vector<size_t> &VisualizerWithEditing::GetPickedPoints() {
     return pointcloud_picker_ptr_->picked_indices_;
 }
 
+std::vector<size_t> VisualizerWithEditing::GetSelectedPoints() {
+    auto &view_control = (ViewControlWithEditing &)(*view_control_ptr_);    
+
+    if (editing_geometry_ptr_->GetGeometryType() == geometry::Geometry::GeometryType::PointCloud) {
+
+        geometry::PointCloud &pcd = (geometry::PointCloud &)*editing_geometry_ptr_;
+
+        return selection_polygon_ptr_->CropPointCloudIndex(pcd, view_control); 
+    }
+    return std::vector<size_t>(); 
+}
+
 bool VisualizerWithEditing::InitViewControl() {
     view_control_ptr_ =
             std::unique_ptr<ViewControlWithEditing>(new ViewControlWithEditing);

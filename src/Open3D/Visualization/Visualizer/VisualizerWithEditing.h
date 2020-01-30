@@ -61,6 +61,7 @@ public:
     void BuildUtilities() override;
     int PickPoint(double x, double y);
     std::vector<size_t> &GetPickedPoints();
+    std::vector<size_t> GetSelectedPoints(); 
 
 protected:
     bool InitViewControl() override;

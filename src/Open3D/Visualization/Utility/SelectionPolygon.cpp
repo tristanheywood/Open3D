@@ -139,6 +139,23 @@ std::shared_ptr<geometry::PointCloud> SelectionPolygon::CropPointCloud(
     }
 }
 
+std::vector<size_t> SelectionPolygon::CropPointCloudIndex(
+    const geometry::PointCloud &input, const ViewControl &view) {
+    if (IsEmpty()) {
+        return std::vector<size_t>();
+    }
+    switch (polygon_type_) {
+        case SectionPolygonType::Rectangle:
+            return CropInRectangle(input.points_, view); 
+        case SectionPolygonType::Polygon:
+            return CropInPolygon(input.points_, view); 
+        case SectionPolygonType::Unfilled:
+        default:
+            return std::vector<size_t>();
+    }
+}
+
+
 std::shared_ptr<geometry::TriangleMesh> SelectionPolygon::CropTriangleMesh(
         const geometry::TriangleMesh &input, const ViewControl &view) {
     if (IsEmpty()) {

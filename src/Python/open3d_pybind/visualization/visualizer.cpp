@@ -166,7 +166,10 @@ void pybind_visualizer(py::module &m) {
                  })
             .def("get_picked_points",
                  &visualization::VisualizerWithEditing::GetPickedPoints,
-                 "Function to get picked points");
+                 "Function to get picked points")
+            .def("get_selected_points",
+                 &visualization::VisualizerWithEditing::GetSelectedPoints,
+                 "Function to get selected points");
 
     py::class_<visualization::VisualizerWithVertexSelection,
                PyVisualizer<visualization::VisualizerWithVertexSelection>,
