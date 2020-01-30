@@ -63,6 +63,9 @@ public:
     std::vector<size_t> &GetPickedPoints();
     std::vector<size_t> GetSelectedPoints(); 
 
+    void RegisterSelectionCallback(
+        std::function<bool(std::vector<size_t>)> callback_func);
+
 protected:
     bool InitViewControl() override;
     bool InitRenderOption() override;
@@ -87,6 +90,7 @@ protected:
     std::shared_ptr<glsl::SelectionPolygonRenderer>
             selection_polygon_renderer_ptr_;
     SelectionMode selection_mode_ = SelectionMode::None;
+    std::function<bool(std::vector<size_t>)> selection_callback_func_ = nullptr; 
 
     std::shared_ptr<PointCloudPicker> pointcloud_picker_ptr_;
     std::shared_ptr<glsl::PointCloudPickerRenderer>
