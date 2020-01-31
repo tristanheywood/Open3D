@@ -155,7 +155,6 @@ std::vector<size_t> SelectionPolygon::CropPointCloudIndex(
     }
 }
 
-
 std::shared_ptr<geometry::TriangleMesh> SelectionPolygon::CropTriangleMesh(
         const geometry::TriangleMesh &input, const ViewControl &view) {
     if (IsEmpty()) {

@@ -75,7 +75,6 @@ public:
             const ViewControl &view);
     std::vector<size_t> CropPointCloudIndex(
             const geometry::PointCloud &input, const ViewControl &view);
-    
 
 private:
     std::shared_ptr<geometry::PointCloud> CropPointCloudInRectangle(
