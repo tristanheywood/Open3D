@@ -277,11 +277,6 @@ std::vector<size_t> VisualizerWithEditing::GetSelectedPoints() {
     return std::vector<size_t>(); 
 }
 
-void VisualizerWithEditing::RegisterSelectionCallback(
-    std::function<bool(std::vector<size_t>)> callback_func) {
-        selection_callback_func_ = callback_func; 
-    }
-
 bool VisualizerWithEditing::InitViewControl() {
     view_control_ptr_ =
             std::unique_ptr<ViewControlWithEditing>(new ViewControlWithEditing);
